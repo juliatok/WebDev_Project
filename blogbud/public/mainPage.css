@@ -3,20 +3,27 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
+  }
+
+  .desktop .feed-container {
+    justify-content: center;
+    display: flex;
+    width: auto;
+    height: 100vw;
   }
   
   .desktop .overlap-wrapper {
     background-color: #ffffff;
     height: 1024px;
     overflow: hidden;
-    width: 1440px;
+    width: 100vw;
   }
   
   .desktop .overlap {
     height: 1024px;
     position: relative;
-    width: 1442px;
+    width: 100vw;
   }
   
   .desktop .rectangle {
@@ -25,13 +32,13 @@
     left: 0;
     position: absolute;
     top: 0;
-    width: 1440px;
+    width: 100vw;
   }
   
   .desktop .suggestions {
     height: 912px;
-    left: 146px;
-    position: absolute;
+
+    position: relative;
     top: 87px;
     width: 759px;
   }
@@ -83,8 +90,8 @@
   
   .desktop .categories {
     height: 912px;
-    left: 1015px;
-    position: absolute;
+    left: 125px;
+    position: relative;
     top: 87px;
     width: 350px;
   }
@@ -117,13 +124,13 @@
     left: 0;
     position: absolute;
     top: 0;
-    width: 1442px;
+    width: 100vw;
   }
   
   .desktop .overlap-2 {
     height: 69px;
     position: relative;
-    width: 1440px;
+    width: 100vw;
   }
   
   .desktop .rectangle-2 {
@@ -132,13 +139,13 @@
     left: 1px;
     position: absolute;
     top: 0;
-    width: 1439px;
+    width: 100vw;
   }
   
   .desktop .ellipse {
     height: 56px;
-    left: 1358px;
-    position: absolute;
+    left: 94vw;
+    position: relative;
     top: 7px;
     width: 56px;
   }
@@ -146,7 +153,7 @@
   .desktop .rectangle-3 {
     background-color: #545454;
     height: 32px;
-    left: 1177px;
+    left: 84vw;
     position: absolute;
     top: 18px;
     width: 131px;
@@ -157,7 +164,7 @@
     font-family: "Carme", Helvetica;
     font-size: 24px;
     font-weight: 400;
-    left: 1177px;
+    left: 84vw;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
