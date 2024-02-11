@@ -1,38 +1,320 @@
-.App {
-  text-align: center;
+
+/*Reading Page*/
+
+body {
+    background-color: blanchedalmond;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.reading-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the children horizontally */
+    margin-top: 100px;
+}
+.floater {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+.row h2 {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.profile_read { 
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Center the children horizontally */
+    width: 450px;
+    height: 300px;
+    border-radius: 25px;
+    margin-right: 50px;
+    background-color: white;
+    box-shadow: inset 0 0 10px black;
+    text-decoration: none;
+    color: black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.row button {
+    margin: 20px;
+}
+.profile_read img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+}
+.follow-profile {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(57, 101, 233);
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+.content {
+    margin: 20px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
+    margin-bottom: 100px;
+    height: 50px;
+}
+
+.description {
+    text-align: center;
+    width: 450px;
+    height: 300px;
+    border-radius: 25px;
+    margin-left: 50px;
+    background-color: white;
+    box-shadow: inset 0 0 10px black;
+    overflow: auto;
+}
+
+.blog-content {
+    text-align: center;
+    width: 1000px;
+    height: auto;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: inset 0 0 10px black;
+}
+
+.description p {
+    margin: 30px;
+}
+.blog-content p {
+    margin: 30px;
+}
+
+
+/*Profilepage*/
+
+.postlink a {
+    text-decoration: none;
+    color: black;
+
+}
+.container {
+    display: flex;
+    margin-top: 25px;
+}
+
+.profile-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
+.profile-picture img {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    border: 2px solid black;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: inset 0 0 10px black;
+    margin-top: 50px;
+}
+.info p {
+    margin: 35px;
+    margin-top: 5px;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    height: 430px;
+    width: 700px;
+    overflow: auto;
+    box-shadow: inset 0 0 10px black;
+}
+
+.post {
+    justify-content: center;
+    width: 600px;
+    height: 100px;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 25px;
+    margin: 20px;
+    box-shadow: inset 0 0 10px black;
+    overflow-wrap: break-word; /* For modern browsers */
+    scrollbar-width: none;
+}
+
+.create-page {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    backdrop-filter: blur(10px); /* Background blur effect */
+    z-index: 999; /* Ensure it appears above other content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 10px black;
+    margin-top: 50px;
+    overflow: auto;
+}
+
+.create-wrapper {
+    margin: 50px;
+}
+.post button {
+    border-radius: 25px;
+    color: red;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.post h2 {
+    text-align: center;
+    margin: 20px;
+}
+
+.post p {
+    margin: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    width: 400px;
+}
+
+.share {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color:rgb(80, 182, 233);
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.create-button {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(57, 233, 80);
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* NavBar.css */
+
+.nav-bar nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: lightgray;
+    height: 75px;
+    width: 100%;
   }
+
+    .nav-bar nav ul li a{
+       text-decoration: none;
+       color:black;
+    }
+
+.link{
+    border: 1px solid rgb(50, 46, 46);
+    text-decoration: none;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 90px;
+    border-radius: 15px;
+    background-color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.link:hover{
+    background-color: grey;
+    color: white;
+    cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+/*postform*/
+
+.create-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    background-color: lightblue;
+    padding: 50px;
+    border-radius: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.title-form {
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
 }
+
+.desc {
+    width: 800px;
+    margin-bottom: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.text-area {
+    width:800px;
+    height: 500px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.publish {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(57, 233, 80);
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cancel {
+    margin-left: 10px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(233, 57, 57);
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
