@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import '../login.css';
+import '../signup.css';
 
-function Login() {
+function Signup() {
   return (
     <div className="containerj">
       <div className="brand-section">
@@ -13,14 +13,20 @@ function Login() {
           upload images. You can also read other people's posts.
         </p>
       </div>
-      <div className="login-section">
-        <form action="#" method="POST" className="login-form">
+      <div className="signup-section">
+        <form action="#" method="POST" className="signup-form">
           <input
             type="text"
-            placeholder="Username, email"
+            placeholder="Username"
             name="username"
             required=""
           />
+            <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                required=""
+            />
           <input
             type="password"
             placeholder="Password"
@@ -28,17 +34,15 @@ function Login() {
             required=""
           />
           <Link to="/mainpage">
-            <button type="submit">Login</button>
+            <button type="submit">Signup</button>
           </Link>
-          <div className="form-footer">
-            <p>Don’t have an account?</p>
-            <Link to="/signup">Sign up</Link>
-            <a href="#">Forgot your password?</a>
-          </div>
+            <div className="form-footer">
+                <Link to="/login">Return to Login</Link>
+            </div>
         </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Signup;
