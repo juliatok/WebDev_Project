@@ -1,7 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../login.css';
+import { useLogin } from "../hooks/useLogin";
+import { useField } from "../hooks/useField";
 
 function Login() {
+    const username = useField("username");
+    const password = useField("password");
+
+    const { login } = useLogin();
+
+    const navigate = useNavigate();
+
+    const handleLogin = async (event) => {
+      event.preventDefault();
+      const loginSuccess = await login(username.value, password.value);
+      if (loginSuccess) {
+          console.log('Login successful');
+          navigate('/mainpage', { replace: true });
+      }
+    }
+
   return (
     <div className="containerj">
       <div className="brand-section">
@@ -14,22 +32,22 @@ function Login() {
         </p>
       </div>
       <div className="login-section">
-        <form action="#" method="POST" className="login-form">
+        <form onSubmit={handleLogin} className="login-form">
           <input
             type="text"
-            placeholder="Username, email"
+            placeholder="Username"
             name="username"
             required=""
+            {...username}
           />
           <input
             type="password"
             placeholder="Password"
             name="password"
             required=""
+            {...password}
           />
-          <Link to="/mainpage">
-            <button type="submit">Login</button>
-          </Link>
+          <button type="submit">Login</button>
           <div className="form-footer">
             <p>Don’t have an account?</p>
             <Link to="/signup">Sign up</Link>

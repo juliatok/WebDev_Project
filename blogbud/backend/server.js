@@ -7,7 +7,7 @@ const blogRoutes = require("./routes/blogs");
 const userRoutes = require("./routes/users");
 const errorMiddleware = require("./middleware/errorMiddleware");
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // express app
 const app = express();

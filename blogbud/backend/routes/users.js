@@ -2,15 +2,12 @@ const express = require('express')
 const {
   signupUser,
   loginUser,
-  getMe,
   getUsers, 
   getUser, 
-  createUser, 
   deleteUser, 
   putUser,
   patchUser
 } = require('../controllers/userController');
-const { auth } = require('../middleware/authMiddleware');
 
 const router = express.Router()
 
@@ -20,25 +17,14 @@ router.post("/signup", signupUser);
 // LOGIN
 router.post("/login", loginUser);
 
-// GET me
-router.get("/", auth, getMe);
+router.get('/', getUsers)
 
-// GET all blogs
-router.get('/', auth, getUsers)
+router.get('/:id', getUser)
 
-// GET a single blog
-router.get('/:id', auth, getUser)
+router.delete('/:id', deleteUser)
 
-// POST a new blog
-router.post('/', auth, createUser)
+router.patch('/:id', patchUser)
 
-// DELETE a blog
-router.delete('/:id', auth, deleteUser)
-
-// Update blog using PATCH 
-router.patch('/:id', auth, patchUser)
-
-// Update blog using PUT 
-router.put('/:id', auth, putUser)
+router.put('/:id', putUser)
 
 module.exports = router

@@ -12,10 +12,13 @@ const  signupUser = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-        const user = await User.signup(username, email, hashedPassword);
-        const token = createToken(user._id);
-        res.status(200).json({ username, email, token });
+        const user = await User.signup(username, email, password);
+        if (user) {
+            const token = createToken(user._id);
+            res.status(200).json({ _id: user._id, username, email, token });
+        } else {
+            return res.status(400).json({ error: "User not created" });
+        }
     } catch (error) {
         res.status(400).json({ error: error.stack });
     }
@@ -23,15 +26,22 @@ const  signupUser = async (req, res) => {
 
 // login user
 const loginUser = async (req, res) => {
-    const { usernameOrEmail, password } = req.body;
+    const { username, password } = req.body;
   
-    const user = await User.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] });
+    const user = await User.findOne({ $or: [{ username: username }, { email: username }] });
     if (!user) {
       console.log('No user found with the provided username or email');
       return res.status(401).json({ message: "Authentication failed on user" });
     }
 
+    console.log(`Plain password: ${password}`);
+    console.log(`Hashed password: ${user.password}`); 
+    console.log('Hashed password: ', await bcrypt.hash(password, saltRounds));  
+
     const passwordMatch = await bcrypt.compare(password, user.password);
+
+    console.log(`Password match: ${passwordMatch}`);
+
     if (!passwordMatch) {
       console.log('Provided password does not match the stored password');
       return res.status(401).json({ message: "Authentication failed on password" });
@@ -39,19 +49,6 @@ const loginUser = async (req, res) => {
 
     const token = createToken(user._id);
     res.status(200).json({ message: "Authentication successful", _id: user._id, username: user.username, email: user.email, token });
-};
-
-// get me
-const getMe = async (req, res, next) => {
-    try {
-        const user = await User.findById(req.user._id);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
 };
 
 // get all users
@@ -77,22 +74,6 @@ const getUser = async (req, res) => {
     }
 };
 
-// create a new user
-const createUser = async (req, res) => {
-    try {
-        const { username, email, description} = req.body;
-        if (!username || !email) {
-            return res.status(400).json({ error: "Username and email are required" });
-        }
-        const newUser = new User({ username, email, description });
-        const savedUser = await newUser.save();
-
-        res.status(201).json(savedUser);
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
 // delete a user
 const deleteUser = async (req, res) => {
     try {
@@ -113,7 +94,7 @@ const patchUser = async (req, res) => {
             { _id: req.params.id },
             { ...req.body },
             {
-                new: true, // return updated document
+                new: true, 
             }
         );
 
@@ -133,7 +114,7 @@ const putUser = async (req, res) => {
         const user = await User.findOneAndReplace(
             { _id: req.params.id },
             req.body,
-            { new: true }// return updated document
+            { new: true }
         );
 
         if (!user) {
@@ -149,10 +130,8 @@ const putUser = async (req, res) => {
 module.exports = {
     signupUser,
     loginUser,
-    getMe,
     getUsers,
     getUser,
-    createUser,
     deleteUser,
     putUser,
     patchUser,
