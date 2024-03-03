@@ -1,6 +1,9 @@
 import React from "react";
 import "../mainpage.css";
 
+
+
+
 const Desktop = () => {
   return (
     <div className="desktop">
@@ -10,14 +13,9 @@ const Desktop = () => {
       <div className="feed-container">
         <div className="suggestions">
           <div className="overlap-group">
-            <img className="line" alt="Line" src=",/images/line-1.svg" />
-            <div className="text-wrapper">Trending</div>
-            <div className="div">New Releases</div>
-          </div>
-        </div>
-        <div className="categories">
-          <div className="div-wrapper">
-            <div className="text-wrapper-2">Categories</div>
+            <div className="div">Releases</div>
+            <div className="content">
+            </div>
           </div>
         </div>
       </div>

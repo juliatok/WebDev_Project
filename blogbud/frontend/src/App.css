@@ -1,15 +1,16 @@
 
 /*Reading Page*/
-
 /*.body{
     background-color: blanchedalmond;
+
 }*/
 
 .reading-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the children horizontally */
-    margin-top: 100px;
+    background-color: blanchedalmond;
+    padding-top: 100px;
 
 }
 .floater {
@@ -94,7 +95,13 @@
 
 
 /*Profilepage*/
-
+/* add media query for mobile view */
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      height: auto;
+    }
+  }
 .postlink a {
     text-decoration: none;
     color: black;
@@ -102,7 +109,6 @@
 }
 .container {
     display: flex;
-    margin-top: 25px;
     background-color: blanchedalmond;
     box-shadow: inset 0 0 10px black;
 }
@@ -112,7 +118,7 @@
     flex-direction: column;
     align-items: center;
     margin: 50px;
-    background-color: white;
+    background-color: blanchedalmond;
 }
 .profile-picture img {
     border-radius: 50%;
@@ -154,7 +160,10 @@
 }
 
 .post {
-    justify-content: center;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
     width: 600px;
     height: 100px;
     border: 2px solid black;
@@ -165,6 +174,40 @@
     overflow-wrap: break-word; /* For modern browsers */
     scrollbar-width: none;
 }
+
+.post a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.update {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    font-weight: normal;
+    border: 1px solid green;
+    border-radius: 10px;
+    width: 75px;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.post span {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    border: 1px solid red;
+    border-radius: 10px;
+    width: 75px;
+    height: 30px;
+    padding-top: 5px;
+}   
+
+
+
+
 
 .create-page {
     position: fixed;
@@ -231,6 +274,13 @@
 
 
 /* NavBar.css */
+
+@media (max-width: 768px) {
+    .nav-bar nav{
+      flex-direction: column;
+      height: auto;
+    }
+  }
 
 
 .nav-bar nav ul {

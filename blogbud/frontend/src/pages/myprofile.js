@@ -1,30 +1,42 @@
-import React, { useState } from 'react';
-import PostForm from './postform';
-import Post from './post';
-import '../App.css'
+import { useEffect } from "react";
+import Blogdetails from "../components/blogDetails";
+import BlogForm from "../components/blogForm";
+import { useBlogContext } from "../hooks/useBlogContext";
+import { useState } from "react";
 
-const MyProfile = () => {
-    const [posts, setPosts] = useState([]);
+
+
+const MyProfile= () => {
+    const { blogs, dispatch } = useBlogContext();
+    const [ posts, setPost ] = useState('');
     const [showPostForm, setShowPostForm] = useState(false);
     const [newPost, setNewPost] = useState({ title: '', content: '' });
-  
+
     const handlePublish = (newPost) => {
-      setPosts([...posts, newPost]);
-      setShowPostForm(false);
-    };
-  
-    const handleDelete = (index) => {
-      const updatedPosts = [...posts];
-      updatedPosts.splice(index, 1);
-      setPosts(updatedPosts);
-    };
-  
+        setPost([...posts, newPost]);
+        setShowPostForm(false);
+      };
+
     const handleCancel = () => {
         setShowPostForm(false);
         setNewPost({ title: '', content: '' }); // Reset the form state
       };
-    
-      return (
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            const res = await fetch('http://localhost:3001/api/blogs');
+            const data = await res.json();
+
+            if (res.ok) {
+                dispatch({ type: 'GET_BLOGS', payload: data });
+            }
+            else {
+                console.log("Error fetching blogs");
+            }
+        }
+        fetchBlogs();
+    }, []);
+    return (
         <div className='container'>
             <div className="profile-picture">
             <img src="https://via.placeholder.com/100" alt="Profile"/>
@@ -38,11 +50,10 @@ const MyProfile = () => {
                     <div>
                         <button className='create-button' onClick={() => setShowPostForm(true)}>Create</button>
                         {showPostForm && (
-                        <PostForm
+                        <BlogForm 
                         post={newPost}
                         onPublish={handlePublish}
                         onCancel={handleCancel}
-                        onChange={(field, value) => setNewPost({ ...newPost, [field]: value })}
                         />
                         )}
                     </div>
@@ -54,16 +65,12 @@ const MyProfile = () => {
                     </div>
                 </div>
                 <div className='posts'>
-                    {posts.map((post, index) => (
-                    <div className='post' key={index}>
-                        <Post post={post} />
-                        <button onClick={() => handleDelete(index)}>Delete</button>
-                    </div>
-                        ))}
+                        {blogs && blogs.map((blog) => (
+                        <Blogdetails blog={blog} key={blog.id} />
+                    ))}
                 </div>
             </div>
         </div>
     );
-    }
-
+}
 export default MyProfile;

@@ -1,4 +1,5 @@
 const Blog = require("../models/blogModel");
+const mongoose = require('mongoose');
 
 // get all blogs
 const getBlogs = async (req, res) => {
@@ -27,11 +28,11 @@ const getBlog = async (req, res) => {
 // create a new blog
 const createBlog = async (req, res) => {
   try {
-    const { title, body, author } = req.body;
-    if (!title || !body || !author) {
+    const { title, body, author, description } = req.body;
+    if (!title || !body || !author || !description) {
       return res.status(400).json({ error: "All fields are required" });
     }
-    const newBlog = new Blog({ title, body, author });
+    const newBlog = new Blog({ title, body, author, description });
     const savedBlog = await newBlog.save();
 
     res.status(201).json(savedBlog);
@@ -42,15 +43,18 @@ const createBlog = async (req, res) => {
 
 // delete a blog
 const deleteBlog = async (req, res) => {
-  try {
-    const blog = await Blog.findByIdAndDelete(req.params.id);
-    if (!blog) {
+
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(404).json({ error: "Blog not found" });
     }
+    const blog = await Blog.findByIdAndDelete({_id: id});
+
+  if (!blog) {
+      return res.status(400).json({ error: "Blog doesn't exist" });
+    }
     res.json({ message: "Blog deleted successfully" });
-  } catch (err) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
 };
 
 // Update blog using PATCH
