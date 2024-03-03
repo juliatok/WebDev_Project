@@ -1,0 +1,109 @@
+const { default: mongoose } = require("mongoose");
+const Blog = require("../models/blogModel");
+
+// get all blogs
+const getBlogs = async (req, res) => {
+  try {
+    const blogs = await Blog.find();
+    res.json(blogs)
+;
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// get a single blog
+const getBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+    res.json(blog);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// create a new blog
+const createBlog = async (req, res) => {
+  try {
+    const { title, /*description,*/ body, author } = req.body;
+  if (!title || /*!description ||*/ !body || !author) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+    const newBlog = new Blog({ title, body, author });
+    const savedBlog = await newBlog.save();
+
+    res.status(201).json(savedBlog);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+// delete a blog
+const deleteBlog = async (req, res) => {
+
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+    const blog = await Blog.findByIdAndDelete({_id: id});
+
+  if (!blog) {
+      return res.status(400).json({ error: "Blog doesn't exist" });
+    }
+    res.json({ message: "Blog deleted successfully" });
+};
+
+
+// Update blog using PATCH
+const patchBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findOneAndUpdate(
+      { _id: req.params.id },
+      { ...req.body },
+      {
+        new: true, // return updated document
+      }
+    );
+
+    if (!blog) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+
+    res.json(blog);
+  } catch (err) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// Update blog using PUT
+const putBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findOneAndReplace(
+      { _id: req.params.id },
+      req.body,
+      { new: true }// return updated document
+    );
+
+    if (!blog) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+
+    res.json(blog);
+  } catch (err) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+module.exports = {
+  getBlogs,
+  getBlog,
+  createBlog,
+  deleteBlog,
+  putBlog,
+  patchBlog,
+};
