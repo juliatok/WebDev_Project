@@ -1,17 +1,19 @@
+html {
+    background-color: white;
+}
 
-/*Reading Page*/
-/*.body{
-    background-color: blanchedalmond;
 
-}*/
 
 .reading-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the children horizontally */
-    background-color: blanchedalmond;
+    margin: 100px;
+    background-color: #c7dadd; 
     padding-top: 100px;
-
+    padding-bottom: 100px;
+    box-shadow: 0px 0px 8px #ddd;
+    border-radius: 25px;
 }
 .floater {
     display: flex;
@@ -31,11 +33,14 @@
     border-radius: 25px;
     margin-right: 50px;
     background-color: white;
-    box-shadow: inset 0 0 10px black;
+    box-shadow: 0px 0px 8px #ddd;
     text-decoration: none;
     color: black;
 }
-
+.row a {
+    text-decoration: none;
+    background-color: none;
+}
 .row button {
     margin: 20px;
 }
@@ -43,18 +48,19 @@
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 .follow-profile {
     width: 100px;
     height: 50px;
     border-radius: 10px;
     background-color: rgb(57, 101, 233);
-    color: black;
+    border: none;
     font-size: 20px;
     cursor: pointer;
+    box-shadow: 0px 0px 8px #ddd;
 }
-.content {
+.content1 {
     margin: 20px;
 }
 .row {
@@ -73,8 +79,9 @@
     border-radius: 25px;
     margin-left: 50px;
     background-color: white;
-    box-shadow: inset 0 0 10px black;
+    box-shadow: 0px 0px 8px #ddd;
     overflow: auto;
+    word-wrap: break-word;
 }
 
 .blog-content {
@@ -83,34 +90,41 @@
     height: auto;
     border-radius: 25px;
     background-color: white;
-    box-shadow: inset 0 0 10px black;
+    box-shadow: 0px 0px 8px #ddd;
+    word-wrap: break-word;
+
 }
 
 .description p {
     margin: 30px;
+    text-align: justify;
 }
 .blog-content p {
     margin: 30px;
+    text-align: justify;
 }
 
 
 /*Profilepage*/
 /* add media query for mobile view */
-@media (max-width: 768px) {
-    .container {
+@media (max-width: 1000px) {
+    .container1 {
+        display: flex;
       flex-direction: column;
       height: auto;
     }
   }
+
 .postlink a {
     text-decoration: none;
     color: black;
 
 }
-.container {
+.container1 {
     display: flex;
-    background-color: blanchedalmond;
-    box-shadow: inset 0 0 10px black;
+    margin: 50px;
+    background-color: #c7dadd;
+    box-shadow: 0px 0px 8px #ddd;
 }
 
 .profile-picture {
@@ -118,28 +132,96 @@
     flex-direction: column;
     align-items: center;
     margin: 50px;
-    background-color: blanchedalmond;
+    background-color: #c7dadd;
 }
 .profile-picture img {
     border-radius: 50%;
     width: 300px;
     height: 300px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 .info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
     background-color: white;
-    border-radius: 25px;
-    box-shadow: inset 0 0 10px black;
+    border-radius: 15px;
+    box-shadow: 0px 0px 8px #ddd;
     margin-top: 50px;
 }
 .info p {
     margin: 35px;
     margin-top: 5px;
 }
+
+@media (max-width: 700px) {
+    .container2 {
+        display: flex;
+      flex-direction: column;
+      height: auto;
+      width: 500px;
+    }
+    
+    .posts {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px;
+        height: 430px;
+        width: 700px;
+        overflow: auto;
+        background-color: black;
+        box-shadow: 0px 0px 8px #ddd;
+        border-radius: 15px;
+    }
+    
+    .post {
+        display: flex;
+        text-align: center;
+        justify-content: space-around;
+        align-items: center;
+        width: 600px;
+        height: 100px;
+        background-color: white;
+        border-radius: 25px;
+        margin: 20px;
+        box-shadow: 0px 0px 8px #ddd;
+        overflow-wrap: break-word; /* For modern browsers */
+        scrollbar-width: none;
+    }
+    
+    .post a {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
+    
+    .update {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        font-weight: normal;
+        border: 1px solid green;
+        border-radius: 10px;
+        width: 75px;
+        height: 30px;
+        padding-top: 5px;
+        box-shadow: 0px 0px 8px #ddd;
+    }
+    
+    .post span {
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+        font-weight: normal;
+        border: 1px solid red;
+        border-radius: 10px;
+        width: 75px;
+        height: 30px;
+        padding-top: 5px;
+        box-shadow: 0px 0px 8px #ddd;
+    }   
+  }
 
 .container2 {
     display: flex;
@@ -156,7 +238,9 @@
     height: 430px;
     width: 700px;
     overflow: auto;
-    box-shadow: inset 0 0 10px black;
+    background-color: white;
+    box-shadow: 0px 0px 8px #ddd;
+    border-radius: 15px;
 }
 
 .post {
@@ -166,11 +250,10 @@
     align-items: center;
     width: 600px;
     height: 100px;
-    border: 2px solid black;
     background-color: white;
     border-radius: 25px;
     margin: 20px;
-    box-shadow: inset 0 0 10px black;
+    box-shadow: 0px 0px 8px #ddd;
     overflow-wrap: break-word; /* For modern browsers */
     scrollbar-width: none;
 }
@@ -191,6 +274,7 @@
     width: 75px;
     height: 30px;
     padding-top: 5px;
+    box-shadow: 0px 0px 8px #ddd;
 }
 
 .post span {
@@ -203,32 +287,11 @@
     width: 75px;
     height: 30px;
     padding-top: 5px;
+    box-shadow: 0px 0px 8px #ddd;
 }   
 
 
 
-
-
-.create-page {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    backdrop-filter: blur(10px); /* Background blur effect */
-    z-index: 999; /* Ensure it appears above other content */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: inset 0 0 10px black;
-    margin-top: 50px;
-    overflow: auto;
-}
-
-.create-wrapper {
-    margin: 50px;
-}
 .post button {
     border-radius: 25px;
     color: red;
@@ -252,104 +315,140 @@
     width: 400px;
 }
 
-.share {
-    width: 100px;
-    height: 50px;
-    border-radius: 10px;
-    background-color:rgb(80, 182, 233);
-    color: black;
-    font-size: 20px;
-    cursor: pointer;
-}
-
 .create-button {
     width: 100px;
     height: 50px;
     border-radius: 10px;
-    background-color: rgb(57, 233, 80);
-    color: black;
-    font-size: 20px;
+    background-color: rgb(145, 248, 162);
+    box-shadow: 0px 0px 8px #ddd;
+    font-size: 30px;
     cursor: pointer;
+    border: none;
 }
 
 
 /* NavBar.css */
 
 @media (max-width: 768px) {
-    .nav-bar nav{
+    .nav-bar nav {
+        display: flex;
       flex-direction: column;
       height: auto;
     }
   }
 
+.nav-bar {
+    background-color: white;
+}
 
-.nav-bar nav ul {
+.nav-bar nav {
+    box-shadow: 0px 0px 8px #ddd;
+    overflow: hidden;
+  }
+
+  .nav-bar nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: lightgray;
+    background-image: linear-gradient(90deg, white, #c7dadd);
     height: 75px;
     width: 100%;
-    overflow: hidden;
   }
 
     .nav-bar nav ul li a{
        text-decoration: none;
        color:black;
-    }
+    
+}
 
 .link{
-    border: 1px solid rgb(50, 46, 46);
     text-decoration: none;
     color:black;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    width: 90px;
-    border-radius: 15px;
-    background-color: white;
+    border-radius: 10px;
+    height: 30px;
+    width: 100px;
+    transition: outline 0.4s ease-in-out, background-color 0.4s ease-in-out;
 }
 
 .link:hover{
-    background-color: grey;
     color: white;
     cursor: pointer;
+    outline: 1px solid white;
+    background-color: white;
 }
 
 /*postform*/
+.create-page {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    overflow: auto;
+    top: 30px;
+}
+
+
 
 .create-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
-    background-color: lightblue;
+    background-color: #c7dadd;
     padding: 50px;
     border-radius: 25px;
+    height: auto;
+    scrollbar-width: none;
+    box-shadow: 0px 0px 8px #ddd;
+    margin: 20px;
 }
 
-.title-form {
-    margin-bottom: 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-}
+@media (max-width: 768px) {
+    
+    .desc {
+        margin-bottom: 5px;
+        box-shadow: 0px 0px 8px #ddd;
+        border: black;
+        border-radius: 10px;
+        width: 400px;
+    }
+    
+    .text-area {
+        width:400px;
+        height: 250px;
+        box-shadow: 0px 0px 8px #ddd;
+        border-radius: 15px;
+    }
+  }
+
 
 .desc {
     width: 800px;
     margin-bottom: 5px;
-    border: 2px solid black;
+    box-shadow: 0px 0px 8px #ddd;
     border-radius: 10px;
+    resize: none;
+    border: none;
 }
 
 .text-area {
     width:800px;
     height: 500px;
-    border: 2px solid black;
+    box-shadow: 0px 0px 8px #ddd;
     border-radius: 15px;
+    resize: none;
+    border: none;
 }
 
 .publish {
@@ -357,9 +456,11 @@
     height: 50px;
     border-radius: 10px;
     background-color: rgb(57, 233, 80);
-    color: black;
+    box-shadow: 0px 0px 8px #ddd;
     font-size: 20px;
+    border: none;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .cancel {
@@ -368,9 +469,17 @@
     height: 50px;
     border-radius: 10px;
     background-color: rgb(233, 57, 57);
-    color: black;
+    box-shadow: 0px 0px 8px #ddd;
+    border: none;
     font-size: 20px;
     cursor: pointer;
+}
+.cancel:hover {
+    background-color: rgb(198, 32, 32);
+}
+
+.publish:hover {
+    background-color: rgb(32, 198, 32);
 }
 
 
@@ -389,3 +498,30 @@
     background-color: gray;
     box-shadow: 0 0 10px black;
   }
+
+/*Share*/
+
+.sharelinks {
+    margin: 20px;
+    box-shadow: 0px 0px 8px #ddd;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.sharelinks button {
+    margin: 15px;
+    border: none;
+    background-color: white;
+    font-size: 17px;;
+}
+
+.react-share__ShareButton:hover {
+    cursor: pointer;
+}
+.react-share__ShareButton img {
+    width: 30px;
+    height: 30px;
+    border: none;
+}

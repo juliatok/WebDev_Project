@@ -35,7 +35,7 @@ const Reading = () => {
         <div className="reading-wrapper">
             <div className="floater">
                 <div className="profile_read">
-                    <div className="content">
+                    <div className="content1">
                         <div className="row">
                             <Link to="/profile"> {UserProfile}
                             <img src="https://via.placeholder.com/100" alt="profile" />

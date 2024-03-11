@@ -21,6 +21,10 @@ const userSchema = new Schema({
       type: String,
       required: true,
   },
+  bio: {
+    type: String,
+    required: false,
+  }
 }, { timestamps: true })
 
 // signup

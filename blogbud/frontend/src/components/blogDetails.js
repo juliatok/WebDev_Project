@@ -1,29 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useBlogContext } from "../hooks/useBlogContext";
 import { Link } from "react-router-dom";
-import BlogUpdateForm from "./updateBlog";
-import { useParams } from "react-router-dom";
+
 
 
 const Blogdetails = ({ blog }) => {
   const { dispatch } = useBlogContext();
   const [isDeleted, setIsDeleted] = useState(false);
-  const [ posts, setPost ] = useState('');
-    const [showPostForm, setShowPostForm] = useState(false);
-    const [newPost, setNewPost] = useState({ title: '', content: '' });
-
-
-    const handlePublish = (newPost) => {
-        setPost([...posts, newPost]);
-        setShowPostForm(false);
-      };
-
-    const handleCancel = () => {
-        setShowPostForm(false);
-        setNewPost({ title: '', content: '' }); // Reset the form state
-      };
+ 
 
   const handleClick = async () => {
+    if (!window.confirm('Are you sure you want to delete this blog?')) {
+      return;
+    }
     const res = await fetch('http://localhost:3001/api/blogs/' + blog._id, {
       method: 'DELETE'
     });

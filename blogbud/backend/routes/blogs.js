@@ -2,6 +2,7 @@ const express = require('express')
 const {
   getBlogs, 
   getBlog, 
+  getBlogByTag,
   createBlog, 
   deleteBlog, 
   putBlog,
@@ -15,6 +16,9 @@ router.get('/', getBlogs)
 
 // GET a single blog
 router.get('/:id', getBlog)
+
+// get blogs by a tag
+app.get('/:tag', getBlogByTag)
 
 // POST a new blog
 router.post('/', createBlog)

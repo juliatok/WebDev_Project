@@ -25,14 +25,31 @@ const getBlog = async (req, res) => {
   }
 };
 
+// get blogs by a tag
+const getBlogByTag = async (req, res) => {
+  try {
+    // Assuming the tag is passed as a URL parameter named 'tag'
+    
+    const blog = await Blog.findone({ tag: req.params.tag }); // Find the first blog with the specified tag
+    
+    if (!blog) {
+      return res.status(404).json({ error: "Blog with the specified tag not found" });
+    }
+
+    res.json(blog);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 // create a new blog
 const createBlog = async (req, res) => {
   try {
-    const { title, body, author, description } = req.body;
-    if (!title || !body || !author || !description) {
+    const { title, body, author, description, tag } = req.body;
+    if (!title || !body || !author || !description || !tag) {
       return res.status(400).json({ error: "All fields are required" });
     }
-    const newBlog = new Blog({ title, body, author, description });
+    const newBlog = new Blog({ title, body, author, description, tag });
     const savedBlog = await newBlog.save();
 
     res.status(201).json(savedBlog);
@@ -100,6 +117,7 @@ const putBlog = async (req, res) => {
 module.exports = {
   getBlogs,
   getBlog,
+  getBlogByTag,
   createBlog,
   deleteBlog,
   putBlog,

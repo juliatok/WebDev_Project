@@ -8,6 +8,7 @@ import Signup from './components/signup';
 import  Desktop  from './components/mainpage';
 import BlogUpdateForm from './components/updateBlog'
 import  Categories  from './components/categories';
+import BlogForm from './components/blogForm';
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
           <Route path="/mainpage" element={<Desktop />} />
           <Route path="/blogs/:id" element={<Reading />} />
           <Route path="/profile" element={<UserProfile />} />
-          <Route path="/myprofile" element={<MyProfile />}/>
+          <Route path="/myprofile/" element={<MyProfile />} />
           <Route path="/blogs/:id/update" element={<BlogUpdateForm />}/>
           <Route path="/categories" element={<Categories />} /> 
+          <Route path="/blogform" element={<BlogForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
