@@ -6,6 +6,39 @@ const User = require('../models/userModel');
 const createToken = (_id) => {
     return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
   };
+
+// User bio
+const userBio = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        res.json(user.bio);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+// Update user bio
+const updateUserBio = async (req, res) => {
+    try {
+        const user = await User.findOneAndUpdate(
+            { _id: req.params.id },
+            { bio: req.body.bio },
+            {
+                new: true, 
+            }
+        );
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
   
 // signup user
 const  signupUser = async (req, res) => {
@@ -135,4 +168,6 @@ module.exports = {
     deleteUser,
     putUser,
     patchUser,
+    userBio,
+    updateUserBio
 };

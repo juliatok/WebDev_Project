@@ -6,7 +6,9 @@ const {
   getUser, 
   deleteUser, 
   putUser,
-  patchUser
+  patchUser,
+  userBio,
+  updateUserBio
 } = require('../controllers/userController');
 
 const router = express.Router()
@@ -26,5 +28,10 @@ router.delete('/:id', deleteUser)
 router.patch('/:id', patchUser)
 
 router.put('/:id', putUser)
+
+// USER BIO
+router.patch('/:id/bio', userBio)
+
+router.put('/:id/bio', updateUserBio)
 
 module.exports = router

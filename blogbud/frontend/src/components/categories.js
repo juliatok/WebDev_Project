@@ -1,42 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../mainpage.css";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
-  // Sample categories
-  const categories = ["Music", "Sports", "Technology", "Gaming", "Travel", "Life Style"];
-
-  // State to track the selected category
+  const categories = ["Music", "Sports", "Technology", "Gaming", "Travel", "LifeStyle"];
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [posts, setPosts] = useState([]);
 
-  // Function to handle category click
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    // fetch the posts related to the selected category, here.
-    // and render them or update state to cause the rendering of related posts.
-  };
+  useEffect(() => {
+    // Function to fetch blog posts based on selected category (tag)
+    const fetchBlogPosts = async () => {
+      if (!selectedCategory) {
+        // If no category is selected, clear posts or set them to a default value
+        setPosts([]);
+        return;
+      }
+
+      try {
+        const url = `http://localhost:3001/api/blogs?tag=${encodeURIComponent(selectedCategory)}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+        setPosts([]); // Optionally clear posts or handle the error differently
+      }
+    };
+
+    fetchBlogPosts();
+  }, [selectedCategory]); // Dependency array includes selectedCategory, fetch posts when it changes
+
   return (
     <div className="desktop">
-  <div className="overlap-wrapper">
-    <div className="overlap">
-      <div className="rectangle" />
-      <div className="feed-container">
-        <div className="suggestions">
-          <div className="overlap-group">
-            <div className="div">Categories</div>
-            <div className="content">
-            {categories.map((category) => (
-                    <button key={category} onClick={() => handleCategoryClick(category)}>
-                      {category}
-                    </button>
-                  ))}
-                  {selectedCategory && <div>Selected Category: {selectedCategory}</div>}
-            </div>
-          </div>
+      <div className="overlap-group">
+        <div className="div">Categories</div>
+        <div className="content">
+          {categories.map((category) => (
+            <button
+              className="categorybuttons"
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+
+          {selectedCategory && <div>Selected Category: {selectedCategory}</div>}
+
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <div className="blogpost" key={post.tag}> {/* Ensure you use the correct identifier attribute (e.g., _id) */}
+                <Link to="/profile">Author Page</Link>
+                <h1>{post.title}</h1>
+                <p>{post.description}</p>
+              </div>
+            ))
+          ) : (
+            <p>No blog posts found for the selected category.</p>
+          )}
         </div>
       </div>
     </div>
-  </div>
-</div>
   );
 };
+
 export default Categories;

@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useBlogContext } from '../hooks/useBlogContext';
-import { useParams } from "react-router-dom";
-import UserProfile from './userProfile';
-import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import '../App.css';
+import { Link } from 'react-router-dom';
 
-const BlogUpdateForm = ({onPublish, onCancel}) => {
+
+
+const BlogUpdateForm = ({onCancel}) => {
     const { id } = useParams();
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [body, setBody] = useState('');
     const [description, setDescription] = useState('');
+    const [error, setError] = useState(null);
+    const { dispatch } = useBlogContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchBlog = async () => {
+       const fetchBlog = async () => {
             const res = await fetch('http://localhost:3001/api/blogs/' + id);
             const data = await res.json();
 
@@ -31,14 +35,42 @@ const BlogUpdateForm = ({onPublish, onCancel}) => {
         fetchBlog();
     }, [id]);
 
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        const updatedBlog = { title, author, body, description };
+            const res = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedBlog),
+            });
+
+            const json = await res.json();
+         
+            if (res.ok) {
+                console.log(json);
+                setTitle('');
+                setAuthor('');
+                setDescription('');
+                setBody('');
+                setError(null);
+                dispatch({ type: 'UPDATE_BLOG', payload: json });
+                navigate('/myprofile');
+            }
+            else {
+                setError(json.error);
+            }
+    }
     return (
         <div className='create-page'>
             <div className="create-wrapper">
                 <h2>Update a Blog</h2>
-                <form>
+                <form onSubmit={handleUpdate}>
                     <div>
+                        
                     <p>Enter a title for your blog:</p>
-                    <input className='title-form'
+                    <textarea className='desc'
                         type="text"
                         placeholder="..."
                         value={title}
@@ -65,15 +97,17 @@ const BlogUpdateForm = ({onPublish, onCancel}) => {
                         onChange={(e) => setBody(e.target.value)}
                     />
                     </div>
-                    <button className='publish' type="submit" onClick={async () => {
-                        await onPublish();
-                    
-                    }}>Publish</button>
-                    <button className='cancel' onClick={onCancel}>Cancel</button>
+                    <button className='publish' type="submit" >Update</button>
+                    <Link to='/myprofile'>
+                        <button className='cancel' onClick={onCancel}>Cancel</button>
+                    </Link>
                 </form>
             </div>
         </div>
       );
-}
+    };
 
-export default BlogUpdateForm
+
+
+
+export default BlogUpdateForm;

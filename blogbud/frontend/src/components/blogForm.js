@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useBlogContext } from '../hooks/useBlogContext';
 import '../App.css';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const BlogForm = ({onPublish, onCancel}) => {
+const BlogForm = ({onCancel}) => {
     const { dispatch } = useBlogContext();
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [description, setDescription] = useState('');
     const [body, setBody] = useState('');
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
     
 
     const handleSubmit = async (e) => {
@@ -32,6 +35,7 @@ const BlogForm = ({onPublish, onCancel}) => {
             setBody('');
             setError(null);
             dispatch({ type: 'ADD_BLOG', payload: json })
+            navigate('/myprofile');
         }
     }
  
@@ -42,7 +46,7 @@ const BlogForm = ({onPublish, onCancel}) => {
                 <form onSubmit={handleSubmit}>
                     <div>
                     <p>Enter a title for your blog:</p>
-                    <input className='title-form'
+                    <textarea className='desc'
                         type="text"
                         placeholder="..."
                         value={title}
@@ -69,30 +73,10 @@ const BlogForm = ({onPublish, onCancel}) => {
                         onChange={(e) => setBody(e.target.value)}
                     />
                     </div>
-                    <button className='publish' type="submit" onClick={async () => {
-                        await onPublish();
-                        const blog = { title, author, body, description };
-
-                        const res = await fetch('http://localhost:3001/api/blogs', {
-                            method: 'POST',
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(blog)
-                        });
-                        const json = await res.json();
-
-                        if (!res.ok) {
-                            setError(json.error);
-                        }
-                        if (res.ok) {
-                            setTitle('');
-                            setAuthor('');
-                            setDescription('');
-                            setBody('');
-                            setError(null);
-                            dispatch({ type: 'ADD_BLOG', payload: json })
-                        }
-                    }}>Publish</button>
-                    <button className='cancel' onClick={onCancel}>Cancel</button>
+                    <button className='publish' type="submit">Publish</button>
+                    <Link to="/myprofile">
+                        <button className='cancel' onClick={onCancel}>Cancel</button>
+                    </Link>
                 </form>
             </div>
         </div>
