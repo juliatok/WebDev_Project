@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
 import '../App.css';
 import { SearchBar } from "./searchBar";
@@ -6,12 +7,18 @@ import { SearchResultsList } from "./searchResultList";
 
 const Layout = () => {
     const [results, setResults] = useState([]);
+    
+    const navigate = useNavigate();
+    const Logout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+    };
 
     return (
         <div className="nav-bar">
             <nav>
                 <ul>
-                <li className="logo">
+                <li className="logoMain">
                     <Link to="/">
                         <img className="web-project-logo" alt="Web project logo" src="./images/web-project-logo-page-1.png" />
                     </Link>
@@ -30,10 +37,7 @@ const Layout = () => {
                     <Link to="/myprofile">MyProfile</Link>
                 </li>
                 <li>
-                    <div className="text-wrapper-3">STORIES</div>
-                </li>
-                <li>
-                    <img className="ellipse" alt="Ellipse" src="./images/ellipse-1.svg" />
+                    <div className="text-wrapper-3"><button onClick={Logout}>Log Out</button></div>
                 </li>
                 </ul>
             </nav>

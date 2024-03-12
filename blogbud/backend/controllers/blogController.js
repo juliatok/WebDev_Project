@@ -28,28 +28,34 @@ const getBlog = async (req, res) => {
 // get blogs by a tag
 const getBlogByTag = async (req, res) => {
   try {
-    // Assuming the tag is passed as a URL parameter named 'tag'
-    
-    const blog = await Blog.findone({ tag: req.params.tag }); // Find the first blog with the specified tag
-    
-    if (!blog) {
-      return res.status(404).json({ error: "Blog with the specified tag not found" });
+    const { tag } = req.query; // Get tag from query parameters
+    if (!tag) {
+      return res.status(400).json({ error: "No tag specified" });
     }
 
-    res.json(blog);
+    // Assuming your Blog schema has a field `tags` that's an array of strings
+    const blogs = await Blog.find({ tags: tag });
+
+    if (!blogs || blogs.length === 0) {
+      return res.status(404).json({ error: "No blogs found with the specified tag" });
+    }
+
+    res.json(blogs);
   } catch (error) {
+    console.error("Error in getBlogByTag:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
+
 // create a new blog
 const createBlog = async (req, res) => {
   try {
-    const { title, body, author, description, tag } = req.body;
-    if (!title || !body || !author || !description || !tag) {
+    const { title, body, author, description } = req.body;
+    if (!title || !body || !author || !description) {
       return res.status(400).json({ error: "All fields are required" });
     }
-    const newBlog = new Blog({ title, body, author, description, tag });
+    const newBlog = new Blog({ title, body, author, description });
     const savedBlog = await newBlog.save();
 
     res.status(201).json(savedBlog);

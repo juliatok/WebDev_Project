@@ -40,7 +40,7 @@
   min-width: 300px;
   margin: 60px;
 }
-.logo {
+.brand-section .logo {
   max-width: 200px;
   margin-bottom: 20px;
 }
@@ -120,7 +120,7 @@ p {
     flex-direction: row;
   }
 
-  .logo {
+  .logo_front {
     max-width: 300px;
     margin-bottom: 20px;
   }

@@ -102,7 +102,7 @@ p {
     flex-direction: row;
   }
 
-  .logo {
+  .logo_front {
     max-width: 300px;
     margin-bottom: 20px;
   }

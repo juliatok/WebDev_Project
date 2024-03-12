@@ -18,13 +18,25 @@ function Signup() {
         if (signupSuccess) {
             console.log('Signup successful');
             navigate('/mainpage', { replace: true });
-        }
+            const res = await fetch(`http://localhost:3001/api/users/myprofile`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('user', JSON.stringify(data.user)); // Store user data in local storage
+      } else {
+          console.log("Error fetching user data");
+      }
     }
+  }
 
   return (
     <div className="containerj">
       <div className="brand-section">
-        <img src="./images/coffee_logo.png" alt="BlogBud Logo" className="logo" />
+        <img src="./images/blogbud_logo.png" alt="BlogBud Logo" className="logo_front" />
         <h1>BlogBud</h1>
         <p>
         Welcome to BlogBud! 

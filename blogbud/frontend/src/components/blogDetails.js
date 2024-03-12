@@ -37,7 +37,7 @@ const Blogdetails = ({ blog }) => {
       <Link to={`/blogs/${blog._id}`}>
         <h4 key={blog._id}>{blog.title}</h4>
       </Link>
-      <span onClick={handleClick}>delete</span>
+      <a className="delete-link" onClick={handleClick}>delete</a>
     </div>
   );
 };

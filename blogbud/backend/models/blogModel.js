@@ -24,7 +24,6 @@ const blogSchema = new Schema({
   },
   tag: {
     type: String,
-    required: true,
   }
 }, { timestamps: true })
 
