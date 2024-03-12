@@ -23,7 +23,7 @@ function Login() {
   return (
     <div className="containerj">
       <div className="brand-section">
-        <img src="./images/coffee_logo.png" alt="BlogBud Logo" className="logo" />
+        <img src="./images/blogbud_logo.png" alt="BlogBud Logo" className="logo" />
         <h1>BlogBud</h1>
         <p>
         Welcome to BlogBud! 
