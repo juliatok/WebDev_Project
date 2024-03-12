@@ -84,6 +84,21 @@ const loginUser = async (req, res) => {
     res.status(200).json({ message: "Authentication successful", _id: user._id, username: user.username, email: user.email, token });
 };
 
+// get my user profile
+const getMe = async (req, res, next) => {
+    const { authorization } = req.headers
+  
+    const token = authorization.split(' ')[1];
+    try {
+      const { _id } = jwt.verify(token, process.env.SECRET);
+  
+      const user = await User.findOne({ _id }).select('-password');
+      res.status(200).json({ user })
+    } catch (error) {
+      res.status(500).json({ error: error.message })
+    }
+};
+
 // get all users
 const getUsers = async (_, res) => {
     try {
@@ -163,6 +178,7 @@ const putUser = async (req, res) => {
 module.exports = {
     signupUser,
     loginUser,
+    getMe,
     getUsers,
     getUser,
     deleteUser,

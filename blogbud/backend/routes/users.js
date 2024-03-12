@@ -2,6 +2,7 @@ const express = require('express')
 const {
   signupUser,
   loginUser,
+  getMe,
   getUsers, 
   getUser, 
   deleteUser, 
@@ -10,6 +11,7 @@ const {
   userBio,
   updateUserBio
 } = require('../controllers/userController');
+const { protect } = require("../middleware/requireAuth");
 
 const router = express.Router()
 
@@ -18,6 +20,9 @@ router.post("/signup", signupUser);
   
 // LOGIN
 router.post("/login", loginUser);
+
+// GET ME
+router.get("/myprofile", protect, getMe);
 
 router.get('/', getUsers)
 
