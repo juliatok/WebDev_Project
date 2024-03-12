@@ -18,7 +18,7 @@ router.get('/', getBlogs)
 router.get('/:id', getBlog)
 
 // get blogs by a tag
-router.get('/:tag', getBlogByTag)
+router.get('/', getBlogByTag)
 
 // POST a new blog
 router.post('/', createBlog)
