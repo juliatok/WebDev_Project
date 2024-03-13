@@ -38,7 +38,7 @@ const Reading = () => {
                     <div className="content1">
                         <div className="row">
                             <Link to="/profile"> {UserProfile}
-                            <img src="https://via.placeholder.com/100" alt="profile" />
+                            <img src="../images/profilepic_place.jpeg" alt="profile" />
                             </Link>
                             <h2 key={id}>{author} </h2>
                             <button className="follow-profile">Follow</button>
@@ -53,7 +53,7 @@ const Reading = () => {
             <div className="blog-content">
                 <h2>{title}</h2>
                 <p>{body}</p>
-                <img src="https://via.placeholder.com/700x350" alt="profile" />
+                <img src="../images/blogpic_place.jpeg" alt="blogpic" />
                 <p>
                 </p>
             </div>
