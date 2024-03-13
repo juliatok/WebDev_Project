@@ -76,7 +76,7 @@ const createBlog = async (req, res) => {
     if (!title || !body || !author || !description) {
       return res.status(400).json({ error: "All fields are required" });
     }
-    const newBlog = new Blog({ title, body, author, description, user_id: req.user._id});
+    const newBlog = new Blog({ title, body, author, description, user_id: req.body.user_id});
     const savedBlog = await newBlog.save();
 
     res.status(201).json(savedBlog);

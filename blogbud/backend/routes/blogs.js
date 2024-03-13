@@ -26,15 +26,15 @@ router.get('/user/:user_id', protect, getBlogByUser)
 router.get('/', getBlogByTag)
 
 // POST a new blog
-router.post('/', protect, createBlog)
+router.post('/', createBlog)
 
 // DELETE a blog
-router.delete('/:id', protect, deleteBlog)
+router.delete('/:id', deleteBlog)
 
 // Update blog using PATCH 
-router.patch('/:id', protect, patchBlog)
+router.patch('/:id', patchBlog)
 
 // Update blog using PUT 
-router.put('/:id', protect, putBlog)
+router.put('/:id', putBlog)
 
 module.exports = router
