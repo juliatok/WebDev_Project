@@ -5,6 +5,7 @@ export const blogsReducer = (state, action) => {
     switch (action.type) {
         case 'GET_BLOGS':
             return {
+                ...state,
                 blogs: action.payload
             };
         case 'ADD_BLOG':

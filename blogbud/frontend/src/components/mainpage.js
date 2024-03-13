@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Desktop = () => {
   const [posts, setPosts] = useState([]);
 
-
   useEffect(() => {
     async function fetchBlogPosts() {
       try {
@@ -25,25 +24,23 @@ const Desktop = () => {
 
   return (
     <div className="desktop">
-
-              <div className="overlap-group">
-                <div className="div">Releases</div>
-                <div className="content">
-                  {posts.length > 0 ? (
-                    posts.reverse().map((post) => (
-                      <div className="blogpost" key={post._id}>
-                        <Link className="linkButton" to="/profile">Author Page</Link>
-                        <Link className="postLink" to={`/blogs/${post._id}`}>{post.title}</Link>
-                        <p>description: {post.description}</p>
-                      </div>
-                    ))
-                  ) : (
-                    <p>No blog posts found.</p>
-                  )}
-                </div>
+      <div className="overlap-group">
+        <div className="div">Releases</div>
+        <div className="content">
+          {posts.length > 0 ? (
+            posts.reverse().map((post) => (
+              <div className="blogpost" key={post.id}>
+                <Link className="linkButton" to={`/profile/${post.user_id}`}>Authors Profile</Link>
+                <Link className="postLink" to={`/blogs/${post._id}`}>{post.title}</Link>
+                <p>description: {post.description}</p>
               </div>
-            </div>
-
+            ))
+          ) : (
+            <div>Loading...</div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -21,7 +21,7 @@ const Layout = () => {
                 <ul>
                 <li className="logoMain">
                     <Link to="/mainpage">
-                        <img className="web-project-logo" alt="Web project logo" src="./images/web-project-logo-page-1.png" />
+                        <img className="web-project-logo" alt="Web project logo" src="../images/web-project-logo-page-1.png" />
                     </Link>
                 </li>
                 <li>
