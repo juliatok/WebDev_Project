@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/mainpage" element={<Desktop />} />
           <Route path="/blogs/:id" element={<Reading />} />
-          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/profile/:user_id" element={<UserProfile />} />
           <Route path="/myprofile/" element={<MyProfile />} />
           <Route path="/blogs/:id/update" element={<BlogUpdateForm />}/>
           <Route path="/categories" element={<Categories />} /> 
