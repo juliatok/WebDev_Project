@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Blogdetails = ({ blog }) => {
   const { dispatch } = useBlogContext();
   const [isDeleted, setIsDeleted] = useState(false);
- 
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleClick = async () => {
     if (!window.confirm('Are you sure you want to delete this blog?')) {
@@ -31,13 +31,17 @@ const Blogdetails = ({ blog }) => {
 
   return (
     <div className="post">
-      <Link to={`/blogs/${blog._id}/update`}>
-        <h4 className="update" key={blog._id}>update</h4>
-      </Link>
+      {user._id === blog.user_id && (
+        <Link to={`/blogs/${blog._id}/update`}>
+          <h4 className="update" key={blog._id}>update</h4>
+        </Link>
+      )}
       <Link to={`/blogs/${blog._id}`}>
         <h4 key={blog._id}>{blog.title}</h4>
       </Link>
-      <a className="delete-link" onClick={handleClick}>delete</a>
+      {user._id === blog.user_id && (
+        <a className="delete-link" onClick={handleClick}>delete</a>
+      )}
     </div>
   );
 };
