@@ -11,6 +11,7 @@ const Layout = () => {
     const navigate = useNavigate();
     const Logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         navigate('/');
     };
 
