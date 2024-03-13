@@ -25,6 +25,27 @@ const getBlog = async (req, res) => {
   }
 };
 
+// get blogs by user id
+const getBlogByUser = async (req, res) => {
+  try {
+    const { user_id } = req.params; // Get user id from request params
+    if (!user_id) {
+      return res.status(400).json({ error: "No user id specified" });
+    }
+
+    const blogs = await Blog.find({ user_id: user_id });
+
+    if (!blogs || blogs.length === 0) {
+      return res.status(404).json({ error: "No blogs found for the specified user" });
+    }
+
+    res.json(blogs);
+  } catch (error) {
+    console.error("Error in getBlogByUser:", error.message);
+    res.status(500).json({ error: "Internal Server Error", message: error.message });
+  }
+};
+
 // get blogs by a tag
 const getBlogByTag = async (req, res) => {
   try {
@@ -55,7 +76,7 @@ const createBlog = async (req, res) => {
     if (!title || !body || !author || !description) {
       return res.status(400).json({ error: "All fields are required" });
     }
-    const newBlog = new Blog({ title, body, author, description });
+    const newBlog = new Blog({ title, body, author, description, user_id: req.user._id});
     const savedBlog = await newBlog.save();
 
     res.status(201).json(savedBlog);
@@ -123,6 +144,7 @@ const putBlog = async (req, res) => {
 module.exports = {
   getBlogs,
   getBlog,
+  getBlogByUser,
   getBlogByTag,
   createBlog,
   deleteBlog,
