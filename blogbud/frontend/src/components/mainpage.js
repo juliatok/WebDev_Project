@@ -12,7 +12,8 @@ const Desktop = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const posts = await response.json();
+        let posts = await response.json();
+        posts = posts.reverse(); // Reverse the posts once
         setPosts(posts);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
