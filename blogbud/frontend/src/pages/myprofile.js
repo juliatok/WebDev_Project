@@ -119,13 +119,13 @@ const MyProfile = () => {
                 <div className="sharelinks">
                     <button>Share:</button>
                     <FacebookShareButton url={shareUrl} quote={title}>
-                        <img src={facebookImage} alt="Facebook" />  
+                        <img src="./images/facebook.png" alt="Facebook" />  
                     </FacebookShareButton>
                     <TwitterShareButton url={shareUrl} title={title}>
-                        <img src={twitterImage} alt="Twitter" />
+                        <img src="./images/twitter.png" alt="Twitter" />
                     </TwitterShareButton>
                     <LinkedinShareButton url={shareUrl} title={title}>
-                        <img src={linkedinImage} alt="Linkedin" />
+                        <img src="./images/linkedin.png" alt="Linkedin" />
                     </LinkedinShareButton>
                 </div>
                 <img src="./images/profilepic_place.jpeg" alt="Profile"/>
