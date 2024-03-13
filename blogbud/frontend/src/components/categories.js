@@ -53,10 +53,10 @@ const Categories = () => {
           {selectedCategory && <div>Selected Category: {selectedCategory}</div>}
 
           {posts.length > 0 ? (
-            posts.map((post) => (
+            posts.reverse().map((post) => (
               <div className="blogpost" key={post.tag}> {/* Ensure you use the correct identifier attribute (e.g., _id) */}
-                <Link to="/profile">Author Page</Link>
-                <h1>{post.title}</h1>
+                <Link className="linkButton" to="/profile">Author Page</Link>
+                <Link className="postLink" to={`/blogs/${post.id}`}>{post.title}</Link>
                 <p>{post.description}</p>
               </div>
             ))
