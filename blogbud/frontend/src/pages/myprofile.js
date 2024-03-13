@@ -144,7 +144,10 @@ const MyProfile = () => {
                             </Link>
                         </div>
                         <div>
-                            <button className="follow-profile">Follow</button>
+                            <button className="follow-profile">Following</button>
+                        </div>
+                        <div>
+                            <button className="follow-profile">Followers</button>
                         </div>
                     </div>
                     <div className='posts'>
