@@ -22,19 +22,26 @@ export const blogsReducer = (state, action) => {
             return {
                 blogs: state.blogs.filter((b) => b._id !== action.payload._id)
             };
+
+        case 'CLEAR_BLOGS':
+            return {
+                ...state,
+                blogs: [], // Clear the blogs
+            };
         default:
             return state;
     }
-}
+};
+
 
 export const BlogContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(blogsReducer, {
-        blogs: []
+      blogs: []
     })
-
+  
     return (
-        <BlogContext.Provider value={{...state, dispatch}}>
-            { children }
-        </BlogContext.Provider>
+      <BlogContext.Provider value={{...state, dispatch}}>
+        { children }
+      </BlogContext.Provider>
     );
-}
+  };
