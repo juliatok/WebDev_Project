@@ -128,7 +128,7 @@ const MyProfile = () => {
                         <img src={linkedinImage} alt="Linkedin" />
                     </LinkedinShareButton>
                 </div>
-                <img src="https://via.placeholder.com/100" alt="Profile"/>
+                <img src="./images/profilepic_place.jpeg" alt="Profile"/>
 
                 <div class="info">
                 <h1>{user.username}</h1>
