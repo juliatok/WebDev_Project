@@ -30,7 +30,7 @@ const Desktop = () => {
           {posts.length > 0 ? (
             posts.reverse().map((post) => (
               <div className="blogpost" key={post.id}>
-                <Link className="linkButton" to={`/profile/${post.user_id}`}>Authors Profile</Link>
+                <Link className="linkButton" to={`/profile/${post.user_id}`}>Author: {post.author}</Link>
                 <Link className="postLink" to={`/blogs/${post._id}`}>{post.title}</Link>
                 <p>description: {post.description}</p>
               </div>
