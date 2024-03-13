@@ -61,7 +61,7 @@
   line-height: 1.5;
 }
 
-.content a {
+.content .linkButton{
   display: inline-block;
   background-color: #d7a6a8;
   color: white;
@@ -73,9 +73,17 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.blogpost a:hover {
+.blogpost .linkButton:hover {
   background-color: #ce797d;
   cursor: pointer;
+}
+
+.content .postLink {
+  margin-left: 15px;
+  text-decoration: none;
+  color: black;
+  font-size: large;
+  font-weight: 400;
 }
 
 .content .categorybuttons {
@@ -95,6 +103,12 @@
 .content .categorybuttons:hover {
   background-color: #ce797d;
   cursor: pointer;
+}
+
+
+
+.content p {
+  margin: 0;
 }
 
 ::-webkit-scrollbar {

@@ -30,18 +30,18 @@ const UserProfile = () => {
         <div className='container1'>
             <div className="profile-picture">
             <div className="sharelinks">
-                <button>Share:</button>
-                <FacebookShareButton url={shareUrl} quote={title}>
-                    Facebook 
-                </FacebookShareButton>
-                <TwitterShareButton url={shareUrl} title={title}>
-                    Twitter
-                </TwitterShareButton>
-                <LinkedinShareButton url={shareUrl} title={title}>
-                    Linkedin                   
-                </LinkedinShareButton>
-            </div>
-            <img src="https://via.placeholder.com/100" alt="Profile"/>
+                    <button>Share:</button>
+                    <FacebookShareButton url={shareUrl} quote={title}>
+                        <img src="./images/facebook.png" alt="Facebook" />  
+                    </FacebookShareButton>
+                    <TwitterShareButton url={shareUrl} title={title}>
+                        <img src="./images/twitter.png" alt="Twitter" />
+                    </TwitterShareButton>
+                    <LinkedinShareButton url={shareUrl} title={title}>
+                        <img src="./images/linkedin.png" alt="Linkedin" />
+                    </LinkedinShareButton>
+                </div>
+            <img src="./images/profilepic_place.jpeg" alt="Profile"/>
             <div class="info">
                 <h1>My Account</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos delectus reiciendis dolorum sit quis voluptas incidunt repellat. Minus vitae cum ab repellendus doloribus, omnis iusto consequatur placeat tempora consectetur doloremque. </p>

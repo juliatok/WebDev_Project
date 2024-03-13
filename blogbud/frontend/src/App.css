@@ -54,7 +54,7 @@ html {
     width: 100px;
     height: 50px;
     border-radius: 10px;
-    background-color: rgb(57, 101, 233);
+    background-color: #ffd0a6;
     border: none;
     font-size: 20px;
     cursor: pointer;
@@ -137,7 +137,7 @@ html {
         color: black;
         cursor: pointer;
         font-weight: normal;
-        border: 1px solid green;
+        border: 2px solid #84b3ad;
         border-radius: 10px;
         width: 75px;
         height: 30px;
@@ -150,7 +150,7 @@ html {
         text-decoration: none;
         color: black;
         font-weight: normal;
-        border: 1px solid red;
+        border: 1px solid #ce797d;
         border-radius: 10px;
         width: 75px;
         height: 30px;
@@ -164,7 +164,8 @@ html {
     text-decoration: none;
     color: black;
     font-weight: normal;
-    border: 1px solid red;
+    border: 2px solid #ce797d;
+    background-color: #e9b4b6;
     border-radius: 10px;
     width: 75px;
     height: 30px;
@@ -179,9 +180,10 @@ html {
 }
 .container1 {
     display: flex;
-    margin: 50px;
+    margin: 70px;
     background-color: #c7dadd;
     box-shadow: 0px 0px 8px #ddd;
+    border-radius: 20px;
 }
 
 .profile-picture {
@@ -204,7 +206,8 @@ html {
     background-color: white;
     border-radius: 15px;
     box-shadow: 0px 0px 8px #ddd;
-    margin-top: 50px;
+    margin-top: 40px;
+    margin-bottom: 0px;
 }
 .info p {
     margin: 35px;
@@ -217,7 +220,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .posts {
@@ -240,7 +243,7 @@ html {
     align-items: center;
     width: 600px;
     height: 100px;
-    background-color: white;
+    background-color: #e2f0ee;
     border-radius: 25px;
     margin: 20px;
     box-shadow: 0px 0px 8px #ddd;
@@ -259,7 +262,8 @@ html {
     color: black;
     cursor: pointer;
     font-weight: normal;
-    border: 1px solid green;
+    border: 2px solid #84b3ad;
+    background-color: #a0ccc6;
     border-radius: 10px;
     width: 75px;
     height: 30px;
@@ -272,7 +276,7 @@ html {
     text-decoration: none;
     color: black;
     font-weight: normal;
-    border: 1px solid red;
+    border: 1px solid #ce797d;
     border-radius: 10px;
     width: 75px;
     height: 30px;
@@ -303,7 +307,7 @@ html {
     width: 100px;
     height: 50px;
     border-radius: 10px;
-    background-color: rgb(145, 248, 162);
+    background-color: #ffe7d1;
     box-shadow: 0px 0px 8px #ddd;
     font-size: 30px;
     cursor: pointer;
@@ -476,7 +480,7 @@ html {
     width: 100px;
     height: 50px;
     border-radius: 10px;
-    background-color: rgb(57, 233, 80);
+    background-color: #94bbb6;
     box-shadow: 0px 0px 8px #ddd;
     font-size: 20px;
     border: none;
@@ -489,18 +493,18 @@ html {
     width: 100px;
     height: 50px;
     border-radius: 10px;
-    background-color: rgb(233, 57, 57);
+    background-color: #ce797d;
     box-shadow: 0px 0px 8px #ddd;
     border: none;
     font-size: 20px;
     cursor: pointer;
 }
 .cancel:hover {
-    background-color: rgb(198, 32, 32);
+    background-color: #c8666b;
 }
 
 .publish:hover {
-    background-color: rgb(32, 198, 32);
+    background-color: #72a69f;
 }
 
 
@@ -509,7 +513,8 @@ html {
 /*Share*/
 
 .sharelinks {
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     box-shadow: 0px 0px 8px #ddd;
     background-color: white;
     border-radius: 25px;

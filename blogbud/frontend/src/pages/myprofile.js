@@ -16,6 +16,7 @@ const MyProfile = () => {
     const [bio, setBio] = useState('');
     const shareUrl = window.location.href; // URL to share
     const title = document.title; // Title to share
+    const [loading, setLoading] = useState(true);
 
     const toggleEdit = () => {
         const editBio = prompt("Edit your bio", bio);
@@ -35,7 +36,6 @@ const MyProfile = () => {
     const hasFetchedUser = useRef(false);
 
     useEffect(() => {
-
         const fetchUser = async () => {
             const storedUser = localStorage.getItem('user');
             console.log('storedUser:', storedUser); // Log the stored user data
@@ -43,6 +43,7 @@ const MyProfile = () => {
                 const parsedUser = JSON.parse(storedUser);
                 console.log('parsedUser:', parsedUser); // Log the parsed user data
                 setUser(parsedUser);
+                setLoading(false);
             } else {
                 const res = await fetch(`http://localhost:3001/api/users/myprofile`, {
                     headers: {
@@ -51,33 +52,51 @@ const MyProfile = () => {
                 });
                 const fetchedUser = await res.json(); // Renamed 'data' to 'fetchedUser'
                 console.log('fetchedUser:', fetchedUser); // Log the fetched user data
-
+    
                 if (res.ok) {
                     setUser(fetchedUser);
                     localStorage.setItem('user', JSON.stringify(fetchedUser));
+                    setLoading(false);
                 } else {
                     console.log("Error fetching user");
                 }
-
+    
                 hasFetchedUser.current = true;
             }
         }
-
-        if (hasFetchedUser.current) {
-            console.log('userId:', user?._id); // Log the userId
+    
+        if (!hasFetchedUser.current) {
             fetchUser();
         };
-
-        fetchUser();
     }, []);
 
-        useEffect(() => {
-
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            if (user && user._id) {
+                const res = await fetch(`http://localhost:3001/api/blogs/user/${user._id}`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const fetchedBlogs = await res.json();
+    
+                if (res.ok) {
+                    dispatch({ type: 'GET_BLOGS', payload: fetchedBlogs });
+                } else {
+                    console.log("Error fetching blogs");
+                }
+            }
+        };
+    
+        fetchBlogs();
+    }, [dispatch, user]);
+    
+    useEffect(() => {
         const fetchBio = async () => {
             if (user && user._id) {
                 const res = await fetch(`http://localhost:3001/api/users/${user._id}/bio`);
-                const fetchedBio = await res.json(); // Renamed 'data' to 'fetchedBio'
-
+                const fetchedBio = await res.json();
+    
                 if (res.ok) {
                     setBio(fetchedBio.bio);
                 } else {
@@ -86,27 +105,10 @@ const MyProfile = () => {
             }
         };
         fetchBio();
-    }, [user?._id]);
+    }, [user]);
 
-    useEffect(() => {
 
-        const fetchBlogs = async () => {
-            const res = await fetch('http://localhost:3001/api/blogs');
-            const fetchedBlogs = await res.json(); // Renamed 'data' to 'fetchedBlogs'
-
-            if (res.ok) {
-                dispatch({ type: 'GET_BLOGS', payload: fetchedBlogs });
-            } else {
-                console.log("Error fetching blogs");
-            }
-        };
-
-        fetchBlogs();
-    }, [ dispatch, user?._id ]);
-
-    console.log('user:', user); // Log the user data
-
-    if (!user) {
+    if (loading) {
         return <div>Loading...</div>;
     }
 
@@ -117,16 +119,16 @@ const MyProfile = () => {
                 <div className="sharelinks">
                     <button>Share:</button>
                     <FacebookShareButton url={shareUrl} quote={title}>
-                        <img src={facebookImage} alt="Facebook" />  
+                        <img src="./images/facebook.png" alt="Facebook" />  
                     </FacebookShareButton>
                     <TwitterShareButton url={shareUrl} title={title}>
-                        <img src={twitterImage} alt="Twitter" />
+                        <img src="./images/twitter.png" alt="Twitter" />
                     </TwitterShareButton>
                     <LinkedinShareButton url={shareUrl} title={title}>
-                        <img src={linkedinImage} alt="Linkedin" />
+                        <img src="./images/linkedin.png" alt="Linkedin" />
                     </LinkedinShareButton>
                 </div>
-                <img src="https://via.placeholder.com/100" alt="Profile"/>
+                <img src="./images/profilepic_place.jpeg" alt="Profile"/>
 
                 <div class="info">
                 <h1>{user.username}</h1>

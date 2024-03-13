@@ -11,6 +11,7 @@ const Layout = () => {
     const navigate = useNavigate();
     const Logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         navigate('/');
     };
 
@@ -19,7 +20,7 @@ const Layout = () => {
             <nav>
                 <ul>
                 <li className="logoMain">
-                    <Link to="/">
+                    <Link to="/mainpage">
                         <img className="web-project-logo" alt="Web project logo" src="./images/web-project-logo-page-1.png" />
                     </Link>
                 </li>

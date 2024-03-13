@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 const BlogForm = ({onCancel}) => {
     const { dispatch } = useBlogContext();
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log('user:', user);
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [description, setDescription] = useState('');
@@ -14,9 +16,15 @@ const BlogForm = ({onCancel}) => {
     const navigate = useNavigate();
     
 
+    const fetchBlogs = async () => {
+        const res = await fetch('http://localhost:3001/api/blogs');
+        const data = await res.json();
+        dispatch({ type: 'GET_BLOGS', payload: data });
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const blog = { title, author, body, description };
+        const blog = { title, author, body, description, user_id: user._id };
 
         const res = await fetch('http://localhost:3001/api/blogs', {
             method: 'POST',
@@ -34,7 +42,8 @@ const BlogForm = ({onCancel}) => {
             setDescription('');
             setBody('');
             setError(null);
-            dispatch({ type: 'ADD_BLOG', payload: json })
+            dispatch({ type: 'ADD_BLOG', payload: json });
+            fetchBlogs(); // Fetch all blogs again
             navigate('/myprofile');
         }
     }

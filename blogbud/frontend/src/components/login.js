@@ -2,6 +2,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../login.css';
 import { useLogin } from "../hooks/useLogin";
 import { useField } from "../hooks/useField";
+import React, { useContext } from 'react';
+import { BlogContext } from '../context/blogContext';
 
 function Login() {
     const username = useField("username");
@@ -10,6 +12,8 @@ function Login() {
     const { login } = useLogin();
 
     const navigate = useNavigate();
+
+    const { dispatch } = useContext(BlogContext);
 
     const handleLogin = async (event) => {
       event.preventDefault();
@@ -27,6 +31,14 @@ function Login() {
 
       if (res.ok) {
         localStorage.setItem('user', JSON.stringify(data.user)); // Store user data in local storage
+        dispatch({ type: 'CLEAR_BLOGS' });
+        const blogRes = await fetch(`http://localhost:3001/api/blogs/user/${data.user._id}`);
+        const blogData = await blogRes.json();
+        if (blogRes.ok) {
+          dispatch({ type: 'GET_BLOGS', payload: blogData.blogs }); // Update the blogs
+        } else {
+          console.log("Error fetching user's blogs");
+        }
     } else {
         console.log("Error fetching user data");
     }

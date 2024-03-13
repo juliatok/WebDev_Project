@@ -30,10 +30,10 @@ const Desktop = () => {
                 <div className="div">Releases</div>
                 <div className="content">
                   {posts.length > 0 ? (
-                    posts.map((post) => (
+                    posts.reverse().map((post) => (
                       <div className="blogpost" key={post.id}>
-                        <Link to="/profile">Author Page</Link>
-                        <h1>{post.title}</h1>
+                        <Link className="linkButton" to="/profile">Author Page</Link>
+                        <Link className="postLink" to={`/blogs/${post.id}`}>{post.title}</Link>
                         <p>description: {post.description}</p>
                       </div>
                     ))

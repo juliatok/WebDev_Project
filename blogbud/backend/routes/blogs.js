@@ -2,12 +2,14 @@ const express = require('express')
 const {
   getBlogs, 
   getBlog, 
+  getBlogByUser,
   getBlogByTag,
   createBlog, 
   deleteBlog, 
   putBlog,
   patchBlog
 } = require('../controllers/blogController')
+const { protect } = require("../middleware/requireAuth");
 
 const router = express.Router()
 
@@ -16,6 +18,9 @@ router.get('/', getBlogs)
 
 // GET a single blog
 router.get('/:id', getBlog)
+
+// GET blogs by a user
+router.get('/user/:user_id', protect, getBlogByUser)
 
 // get blogs by a tag
 router.get('/', getBlogByTag)
