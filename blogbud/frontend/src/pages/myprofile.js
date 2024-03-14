@@ -19,21 +19,7 @@ const MyProfile = () => {
     const title = document.title; // Title to share
     const [loading, setLoading] = useState(true);
 
-    const toggleEdit = () => {
-        const editBio = prompt("Edit your bio", bio);
-        setBio(editBio);
-        if (user && user._id) {
-            fetch(`http://localhost:3001/api/users/${user._id}/bio`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ bio: editBio })
-            });
-        }
-        console.log(user?._id);
-    };
-    
+
 
     const hasFetchedUser = useRef(false);
 
@@ -97,12 +83,19 @@ const MyProfile = () => {
     useEffect(() => {
         const fetchBio = async () => {
             if (user && user._id) {
-                const res = await fetch(`http://localhost:3001/api/users/${user._id}/bio`);
+                const res = await fetch(`http://localhost:3001/api/users/${user._id}`);
                 const fetchedBio = await res.json();
     
                 if (res.ok) {
-                    // Update the user state with the fetched bio
-                    setUser(prevUser => ({ ...prevUser, bio: fetchedBio.bio }));
+                    setBio(fetchedBio.bio)
+                    setUser(prevUser => {
+                        if (prevUser.bio !== fetchedBio.bio) {
+                            return { ...prevUser, bio: fetchedBio.bio };
+                        }
+                        return prevUser;
+                    });
+                    console.log('fetched:', fetchedBio.bio);
+            
                 } else {
                     console.log("Error fetching bio");
                 }
@@ -111,7 +104,29 @@ const MyProfile = () => {
         fetchBio();
     }, [user]);
 
+    const toggleEdit = async (e) => {
+        if (!window.confirm('Do you want to save the changes?')) {
+            return;
+          }
+        e.preventDefault();
+        const updatedBio = { bio, user_id: user._id };
+            const res = await fetch(`http://localhost:3001/api/users/${user._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedBio),
+            });
 
+            const json = await res.json();
+         
+            if (res.ok) {
+                setBio(updatedBio.bio);
+                dispatch({ type: 'UPDATE_BLOG', payload: json });
+                console.log(json);
+            }
+    
+    }
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -136,8 +151,13 @@ const MyProfile = () => {
 
                 <div class="info">
                 <h1>{user.username}</h1>
-                    <p>{bio}</p>
-                    <button onClick={toggleEdit}>Edit</button>
+                    <form className="bio" onSubmit={toggleEdit}>
+                        <textarea className="biotext" 
+                            placeholder="Add Bio..."
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}></textarea>
+                        <button className="edit-bio" type="submit">Save Bio</button>
+                    </form>
                     </div>
                 </div>
                 <div class="container2">

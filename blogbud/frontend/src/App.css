@@ -159,6 +159,33 @@ html {
     }   
 }
 
+.biotext {
+    width: 300px;
+    height: 75px;
+    margin: 10px;
+    box-shadow: 0px 0px 8px #ddd;
+    border-radius: 10px;
+    resize: none;
+    border: none;
+}
+.bio {
+    display: flex;
+    flex-direction: column;
+}
+.edit-bio {
+    border-radius: 10px;
+    height: 30px;
+    box-shadow: 0px 0px 8px #ddd;
+    border: none;
+    color: black;
+    font-weight: normal;
+    background-color: #fbede0;
+    box-shadow: 0px 0px 8px #ddd;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    margin: 10px;
+}
 .post .delete-link {
     cursor: pointer;
     text-decoration: none;
@@ -203,11 +230,13 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 400px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0px 0px 8px #ddd;
     margin-top: 40px;
     margin-bottom: 0px;
+    margin: 20px;
 }
 .info p {
     margin: 35px;
