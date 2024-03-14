@@ -11,6 +11,7 @@ const Reading = () => {
     const [author, setAuthor] = useState('');
     const [body, setBody] = useState('');
     const [description, setDescription] = useState('');
+    const [userId, setUserId] = useState(''); 
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -23,6 +24,7 @@ const Reading = () => {
                 setAuthor(data.author);
                 setBody(data.body);
                 setDescription(data.description);
+                setUserId(data.user_id); 
             }
             else {
                 console.log("Error fetching blog");
@@ -37,7 +39,7 @@ const Reading = () => {
                 <div className="profile_read">
                     <div className="content1">
                         <div className="row">
-                            <Link to="/profile"> {UserProfile}
+                            <Link to={`/profile/${userId}`}> 
                             <img src="../images/profilepic_place.jpeg" alt="profile" />
                             </Link>
                             <h2 key={id}>{author} </h2>
