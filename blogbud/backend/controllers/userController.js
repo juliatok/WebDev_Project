@@ -23,11 +23,9 @@ const userBio = async (req, res) => {
 const updateUserBio = async (req, res) => {
     try {
         const user = await User.findOneAndUpdate(
-            { user_id: req.params.id },
+            { _id: req.params.id },
             { bio: req.body.bio },
-            {
-                new: true, 
-            }
+            { new: true }
         );
 
         if (!user) {
