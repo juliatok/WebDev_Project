@@ -111,7 +111,7 @@ const MyProfile = () => {
         e.preventDefault();
         const updatedBio = { bio, user_id: user._id };
             const res = await fetch(`http://localhost:3001/api/users/${user._id}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
