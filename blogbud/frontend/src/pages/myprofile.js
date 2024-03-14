@@ -3,13 +3,14 @@ import Blogdetails from "../components/blogDetails";
 import { useBlogContext } from "../hooks/useBlogContext";
 import useMyProfileContext from '../hooks/useMyProfileContext';
 import MyProfileContext from '../context/myprofileContext';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FacebookShareButton, TwitterShareButton,  LinkedinShareButton } from 'react-share';
 import facebookImage from './face.png';
 import twitterImage from './twitter.png';
 import linkedinImage from './LinkedIn.png';
 
 const MyProfile = () => {
+    const { userid } = useParams();
     const { blogs, dispatch } = useBlogContext();
     const initialUser = useMyProfileContext();
     const [user, setUser] = useState(initialUser);
@@ -32,6 +33,7 @@ const MyProfile = () => {
         }
         console.log(user?._id);
     };
+    
 
     const hasFetchedUser = useRef(false);
 
@@ -68,11 +70,12 @@ const MyProfile = () => {
         if (!hasFetchedUser.current) {
             fetchUser();
         };
-    }, []);
+    }, [userid]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
             if (user && user._id) {
+                dispatch({ type: 'CLEAR_BLOGS' });
                 const res = await fetch(`http://localhost:3001/api/blogs/user/${user._id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -98,7 +101,8 @@ const MyProfile = () => {
                 const fetchedBio = await res.json();
     
                 if (res.ok) {
-                    setBio(fetchedBio.bio);
+                    // Update the user state with the fetched bio
+                    setUser(prevUser => ({ ...prevUser, bio: fetchedBio.bio }));
                 } else {
                     console.log("Error fetching bio");
                 }
