@@ -4,22 +4,27 @@ import '../signup.css';
 import { useSignup } from "../hooks/useSignUp";
 import { useField } from "../hooks/useField";
 import { BlogContext } from '../context/blogContext';
+import { AuthContext } from '../context/authContext';
 
 function Signup() {
   const username = useField("username");
   const email = useField("email");
   const password = useField("password");
 
-  const { signup, error, isLoading } = useSignup();
+  const { signup } = useSignup();
 
   const navigate = useNavigate();
 
   const { dispatch } = useContext(BlogContext);
 
+  const { setIsAuthenticated } = useContext(AuthContext);
+
   const handleSignup = async (event) => {
     event.preventDefault();
+
     const signupSuccess = await signup(username.value, email.value, password.value);
     if (signupSuccess) {
+      setIsAuthenticated(true);
       console.log('Signup successful');
       navigate('/mainpage', { replace: true });
       const res = await fetch(`http://localhost:3001/api/users/myprofile`, {
