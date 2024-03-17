@@ -54,7 +54,7 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
 
 #### Sprint 1
 
--Developed a prototype for the mainpage (homepage).
+- Developed a prototype for the mainpage (homepage).
 
 #### Sprint 2 and 3
 
