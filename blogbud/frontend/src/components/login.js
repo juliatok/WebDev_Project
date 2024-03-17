@@ -4,6 +4,7 @@ import { useLogin } from "../hooks/useLogin";
 import { useField } from "../hooks/useField";
 import React, { useContext } from 'react';
 import { BlogContext } from '../context/blogContext';
+import { AuthContext } from '../context/authContext';
 
 function Login() {
     const username = useField("username");
@@ -15,13 +16,17 @@ function Login() {
 
     const { dispatch } = useContext(BlogContext);
 
+    const { setIsAuthenticated } = useContext(AuthContext);
+
     const handleLogin = async (event) => {
       event.preventDefault();
+
       const loginSuccess = await login(username.value, password.value);
       if (loginSuccess) {
-          console.log('Login successful');
-          navigate('/mainpage', { replace: true });
-          // Fetch user data after successful login
+        setIsAuthenticated(true);
+        console.log('Login successful');
+        navigate('/mainpage', { replace: true });
+        // Fetch user data after successful login
         const res = await fetch(`http://localhost:3001/api/users/myprofile`, {
           headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -76,7 +81,7 @@ function Login() {
           <div className="form-footer">
             <p>Don’t have an account?</p>
             <Link to="/signup">Sign up</Link>
-            <a href="#">Forgot your password?</a>
+            <a href="/">Forgot your password?</a>
           </div>
         </form>
       </div>

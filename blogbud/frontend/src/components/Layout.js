@@ -1,17 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import '../App.css';
 import { SearchBar } from "./searchBar";
 import { useState } from "react";
 import { SearchResultsList } from "./searchResultList";
+import { AuthContext } from '../context/authContext';
 
 const Layout = () => {
     const [results, setResults] = useState([]);
     
     const navigate = useNavigate();
+
+    const { setIsAuthenticated } = useContext(AuthContext);
+
     const Logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        setIsAuthenticated(false);
         navigate('/');
     };
 
