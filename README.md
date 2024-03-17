@@ -21,6 +21,8 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
 #### Sprint 2 and 3:
 
 - Built an API server for the project.
+
+- Implementing MongoDB database connection.
   
 - Created a visually appealing frontend for the signup and login pages.
   
