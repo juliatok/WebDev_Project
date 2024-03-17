@@ -41,8 +41,6 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
     - User profiles, including ensuring users can only modify their own blog posts and viewing their own posts in the profile.
 
     - Implemented real-time updates to the app, including 'myprofile' section.
-      
-    - Main page feed organization to show the newest post at the top.
  
     - Enhancing the ability to view the blog post author's profile, including all their blogposts.
       
