@@ -69,3 +69,18 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
 - Helped create uniformity in the style's of the different pages in the project, and polished features with css.
   
 - created the backend tests.
+
+
+
+### Valtteri Ikonen
+
+### Sprint 1:
+- Sketch a UI of a user profile page
+
+### Sprint 2 and 3:
+- Develop functionalities of the website.
+- Implement the sketch to a html/css format.
+
+### Sprint 4:
+- More functionality executions.
+- Adjustments to the user interface.
