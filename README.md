@@ -36,8 +36,6 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
   
 - Implemented frontend isAuthenticated logic.
   
-- Prepared and delivered the project presentation.
-  
 - Addressed and fixed functionalities related to:
   
     - User profiles, including ensuring users can only modify their own blog posts and viewing their own posts in the profile.
@@ -48,8 +46,6 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
  
     - Enhancing the ability to view the blog post author's profile, including all their blogposts.
       
-    - Other minor code improvements for enhanced functionality.
-    - 
 ### Lenni Liukkonen
 
 #### Sprint 1
