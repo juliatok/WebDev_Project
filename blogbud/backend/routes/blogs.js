@@ -23,7 +23,7 @@ router.get('/:id', getBlog)
 router.get('/user/:user_id', protect, getBlogByUser)
 
 // get blogs by a tag
-router.get('/', getBlogByTag)
+router.get('/:tag', getBlogByTag)
 
 // POST a new blog
 router.post('/', createBlog)

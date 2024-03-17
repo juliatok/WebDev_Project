@@ -22,8 +22,9 @@ const blogSchema = new Schema({
     type: String,
     required: true,
   },
-  tag: {
-    type: String,
+  tags: {
+     type: [{type: String}],
+     required: false,
   },
     user_id: {
       type: Schema.Types.ObjectId,

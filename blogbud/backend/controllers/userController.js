@@ -75,7 +75,7 @@ const loginUser = async (req, res) => {
 
     if (!passwordMatch) {
       console.log('Provided password does not match the stored password');
-      return res.status(401).json({ message: "Authentication failed on password" });
+      return res.status(401).json({ error: "Authentication failed", message: "incorrect pasword" });
     }
 
     const token = createToken(user._id);

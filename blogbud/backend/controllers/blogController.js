@@ -49,19 +49,14 @@ const getBlogByUser = async (req, res) => {
 // get blogs by a tag
 const getBlogByTag = async (req, res) => {
   try {
-    const { tag } = req.query; // Get tag from query parameters
+    const tag = req.params.tag; // Get tag from URL parameters
     if (!tag) {
       return res.status(400).json({ error: "No tag specified" });
     }
 
     // Assuming your Blog schema has a field `tags` that's an array of strings
-    const blogs = await Blog.find({ tags: tag });
-
-    if (!blogs || blogs.length === 0) {
-      return res.status(404).json({ error: "No blogs found with the specified tag" });
-    }
-
-    res.json(blogs);
+    const blogs = await Blog.find({ tags: tag }); // Find blogs where the tags array includes the specified tag
+    res.json(blogs); // Return found blogs
   } catch (error) {
     console.error("Error in getBlogByTag:", error);
     res.status(500).json({ error: "Internal Server Error" });
