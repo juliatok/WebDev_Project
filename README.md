@@ -63,9 +63,9 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
 #### Sprint 4
 
 - Created a feed for the blog posts for the main page.
-- 
+  
 - Created the categories page and tried to implement a backend search using a tag system.
-- 
+  
 - Helped create uniformity in the style's of the different pages in the project, and polished features with css.
-- 
+  
 - created the backend tests.
