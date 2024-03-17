@@ -45,7 +45,27 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
     - Implemented real-time updates to the app, including 'myprofile' section.
       
     - Main page feed organization to show the newest post at the top.
-      
+ 
     - Enhancing the ability to view the blog post author's profile, including all their blogposts.
       
     - Other minor code improvements for enhanced functionality.
+    - 
+### Lenni Liukkonen
+
+#### Sprint 1
+
+-Developed a prototype for the mainpage (homepage).
+
+#### Sprint 2 and 3
+
+- Helped create the javascript files for the mainpage and created the css page for it.
+
+#### Sprint 4
+
+- Created a feed for the blog posts for the main page.
+- 
+- Created the categories page and tried to implement a backend search using a tag system.
+- 
+- Helped create uniformity in the style's of the different pages in the project, and polished features with css.
+- 
+- created the backend tests.
