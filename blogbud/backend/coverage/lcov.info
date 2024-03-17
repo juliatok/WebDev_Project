@@ -29,7 +29,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:config\db.js
+SF:config/db.js
 FN:6,(anonymous_0)
 FNF:1
 FNH:1
@@ -47,7 +47,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:controllers\blogController.js
+SF:controllers/blogController.js
 FN:5,(anonymous_0)
 FN:16,(anonymous_1)
 FN:29,(anonymous_2)
@@ -162,7 +162,7 @@ BRF:24
 BRH:9
 end_of_record
 TN:
-SF:controllers\userController.js
+SF:controllers/userController.js
 FN:6,(anonymous_0)
 FN:11,(anonymous_1)
 FN:23,(anonymous_2)
@@ -298,7 +298,7 @@ BRF:18
 BRH:4
 end_of_record
 TN:
-SF:middleware\errorMiddleware.js
+SF:middleware/errorMiddleware.js
 FN:1,(anonymous_0)
 FN:9,(anonymous_1)
 FN:13,(anonymous_2)
@@ -326,7 +326,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:middleware\requireAuth.js
+SF:middleware/requireAuth.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:0
@@ -354,7 +354,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:models\blogModel.js
+SF:models/blogModel.js
 FNF:0
 FNH:0
 DA:1,2
@@ -367,7 +367,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models\userModel.js
+SF:models/userModel.js
 FN:31,(anonymous_0)
 FN:85,(anonymous_1)
 FNF:2
@@ -430,7 +430,7 @@ BRF:19
 BRH:8
 end_of_record
 TN:
-SF:routes\blogs.js
+SF:routes/blogs.js
 FNF:0
 FNH:0
 DA:1,2
@@ -452,7 +452,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes\users.js
+SF:routes/users.js
 FNF:0
 FNH:0
 DA:1,2
