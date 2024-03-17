@@ -84,3 +84,27 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
 ### Sprint 4:
 - More functionality executions.
 - Adjustments to the user interface.
+
+
+### Mikko Manninen
+
+#### Sprint 1
+- Planning the project idea and goals with group members.
+  
+- Developed a prototype for readingpage.
+
+#### Sprint 2 and 3
+- Created the reading-page and Layout, also added css to them.
+  
+- Created the myprofile-page based on Valtteri's profile-page.
+  
+- Implemented CRUD operations for myprofile-page and reading-page and made necessary changes to backend.
+
+- Created update- and create-pages and implemented CRUD operation to them.
+
+#### Sprint 4
+- Made the search-bar functional.
+  
+- Made the Layout fully responsive for mobile view.
+
+- Helped fixing small details in css and functions to make the app look and function better.
