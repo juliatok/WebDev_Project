@@ -44,6 +44,8 @@ Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
  
     - Enhancing the ability to view the blog post author's profile, including all their blogposts.
       
+    - Made other minor code improvements to enhance functionality.
+      
 ### Lenni Liukkonen
 
 #### Sprint 1
