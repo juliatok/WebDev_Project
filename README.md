@@ -4,7 +4,7 @@
 
 Julia Tokola, Lenni Liukkonen, Mikko Manninen and Valtteri Ikonen
 
-## Everyone's Distribution to the Project:
+## Summary of Contributions by Each Team Member:
 
 ### Julia Tokola
 
